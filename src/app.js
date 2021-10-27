@@ -1,6 +1,9 @@
 import "./app.css";
-import Goal from "./components/controls/goal";
-import Year from "./components/controls/year";
+
+import { GOALS_LIST } from "./config/index";
+import { YEARS } from "./config/index";
+
+import Dropdown from "./components/controls/Dropdown";
 import Chart from "./components/chart";
 import Map from "./components/map";
 
@@ -9,8 +12,8 @@ function App() {
     <div className="App">
       <div className="side">
         <div className="control">
-          <Goal />
-          <Year />
+          <Dropdown options={GOALS_LIST}/>
+          <Dropdown options={YEARS}/>
         </div>
         <Chart />
       </div>
