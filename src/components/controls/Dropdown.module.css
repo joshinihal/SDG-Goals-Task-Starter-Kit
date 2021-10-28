@@ -5,3 +5,8 @@
     border: 2px solid skyblue;
     margin: 0 1rem;
 }
+
+.selectContainer{
+    display: flex;
+    align-items: center;
+}

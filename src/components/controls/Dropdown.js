@@ -3,17 +3,18 @@ import classes from './Dropdown.module.css';
 
 const Dropdown = (props) => {
 
-  const [currentValue, setCurrentValue] = useState(props.options[0]);
+  const [currentValue, setCurrentValue] = useState(props.defaultValueIndex);
 
   const handleOptionChange = (e) => {
     setCurrentValue(e.target.value);
+    props.onChange(props.options[e.target.value]);
   }
 
   return (
-    <div>
-      <label htmlFor="selectField"> {props.label} </label>
-      <select className={classes.selectField} id="selectField" value={currentValue} onChange={handleOptionChange}>
-          {props.options.map(el =><option key={el.id}>{el.value}</option>)}
+    <div className={classes.selectContainer}>
+      <label htmlFor={props.label}> {props.label} </label>
+      <select className={classes.selectField} id={props.label} value={currentValue} onChange={handleOptionChange}>
+          {props.options.map((el,i) =><option value={i} key={el.id}>{el.value}</option>)}
       </select>
     </div>
   );

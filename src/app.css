@@ -15,6 +15,7 @@
   background: rgb(250, 217, 223);
   padding: 20px;
   display: flex;
+  justify-content: flex-end;
 }
 
 .chart {
@@ -41,4 +42,9 @@
 
 .side select {
   width: 100%;
+}
+
+.chartContainer {
+  width: 100%;
+  overflow: auto;
 }
