@@ -10,25 +10,44 @@ import classes from "./Controls.module.css";
 import { dataActions } from "../../store/data";
 
 const Controls = () => {
+  const initGoalIndex = 16; //since SDG index score is at index 16
+  const initYearIndex = 0;
   const dispatch = useDispatch();
-
   const [selectedGoal, setSelectedGoal] = useState(GOALS_LIST[16]);
   const [selectedYear, setSelectedYear] = useState(YEARS[0]);
   const [selectedType, setSelectedType] = useState(TYPES[0]);
 
   const handleGoalsChange = (goal) => {
     setSelectedGoal(goal);
-    dispatch(dataActions.changeData({goal: goal, year: selectedYear, type: selectedType}));
+    dispatch(
+      dataActions.changeData({
+        goal: goal,
+        year: selectedYear,
+        type: selectedType,
+      })
+    );
   };
 
   const handleYearsChange = (year) => {
     setSelectedYear(year);
-    dispatch(dataActions.changeData({goal: selectedGoal, year: year, type: selectedType}));
+    dispatch(
+      dataActions.changeData({
+        goal: selectedGoal,
+        year: year,
+        type: selectedType,
+      })
+    );
   };
 
   const handleTypesChange = (type) => {
     setSelectedType(type);
-    dispatch(dataActions.changeData({goal: selectedGoal, year: selectedYear, type: type}));
+    dispatch(
+      dataActions.changeData({
+        goal: selectedGoal,
+        year: selectedYear,
+        type: type,
+      })
+    );
   };
 
   return (
@@ -37,15 +56,15 @@ const Controls = () => {
         label="Goal"
         onChange={handleGoalsChange}
         options={GOALS_LIST}
-        defaultValueIndex={16}
+        defaultValueIndex={initGoalIndex}
       />
       <Dropdown
         label="Year"
         onChange={handleYearsChange}
         options={YEARS}
-        defaultValueIndex={0}
+        defaultValueIndex={initYearIndex}
       />
-      <Switch types={TYPES} onChange={handleTypesChange}/>
+      <Switch types={TYPES} onChange={handleTypesChange} />
     </div>
   );
 };

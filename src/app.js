@@ -1,5 +1,4 @@
 import "./app.css";
-
 import Chart from "./components/chart/Chart";
 import Controls from "./components/controls/Controls";
 import Map from "./components/map";

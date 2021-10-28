@@ -1,43 +1,50 @@
 import { createSlice } from "@reduxjs/toolkit";
-import data2020 from '../data/2020.json';
-import data2019 from '../data/2019.json';
-import data2018 from '../data/2018.json';
-import {UTS} from '../config/index';
+import data2020 from "../data/2020.json";
+import data2019 from "../data/2019.json";
+import data2018 from "../data/2018.json";
+import { UTS } from "../config/index";
+import { changeUrlState, configureData } from "../utils/index";
 
 const goalsData = {
   2020: data2020,
   2019: data2019,
-  2018: data2018
+  2018: data2018,
 };
 
-const changeUrlState = (g, y, t) => {
-  const url = `goal=${g}&year=${y}&type=${t}`;
-  window.history.pushState({}, 'State Changed', url)
+const initYear = 2020;
+const initGoalIndex = 16;
+const initType = 'States';
+
+// initialize data which has default year, default goal and is not in union territories
+// configure data from json file to use it accordingly
+const initialdataState = {
+  goals: configureData(goalsData, initYear, initGoalIndex).filter(
+    (el) => !UTS.includes(el.id)
+  ),
 };
 
-const initialdataState = {goals: goalsData[2020].map(element => {
-   return {name: element.area_name, value: element.chartdata[0].value, id: element.area_code}  
-}).filter(el => !(UTS.includes(el.id)))};
+// append default state into url
+changeUrlState(initGoalIndex, initYear, initType);
 
 const dataSlice = createSlice({
   name: " data",
   initialState: initialdataState,
   reducers: {
     changeData: (state, action) => {
-      changeUrlState(action.payload.goal.id, action.payload.year.value, action.payload.type.value);
-      const index = action.payload.goal.id - 1;
-      const goalsBeforeFilter = goalsData[action.payload.year.value].map(element => {
-        return {name: element.area_name, value: element.chartdata[index].value, id: element.area_code}  
-      });
-      if (action.payload.type.value === 'States') {
-        state.goals = goalsBeforeFilter.filter(el => !(UTS.includes(el.id)));
+      const goalId = action.payload.goal.id;
+      const yearValue = action.payload.year.value;
+      const typeValue = action.payload.type.value;
+      const index = goalId - 1;
+      changeUrlState(goalId, yearValue, typeValue);
+      const goalsBeforeFilter = configureData(goalsData, yearValue, index);
+      if (typeValue === "States") {
+        state.goals = goalsBeforeFilter.filter((el) => !UTS.includes(el.id));
       } else {
-        state.goals = goalsBeforeFilter.filter(el => (UTS.includes(el.id)));
+        state.goals = goalsBeforeFilter.filter((el) => UTS.includes(el.id));
       }
     },
-    },
   },
-);
+});
 
 export const dataActions = dataSlice.actions;
 
