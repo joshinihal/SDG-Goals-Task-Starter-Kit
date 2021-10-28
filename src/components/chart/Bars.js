@@ -1,10 +1,11 @@
 import classes from "./Bars.module.css";
 
 const Bars = (props) => {
-  return props.temperatureData.map((el) => (
+  console.log('props', props.sdgData)
+  return props.sdgData.map((el) => (
     <rect
       className={classes.bar}
-      key={props.yValue(el)}
+      key={props.keyValue(el)}
       x={props.xScale(props.xValue(el))}
       y={props.innerHeight - props.yScale(props.yValue(el))}
       width={props.xScale.bandwidth()}

@@ -12,7 +12,7 @@ const Dropdown = (props) => {
 
   return (
     <div className={classes.selectContainer}>
-      <label htmlFor={props.label}> {props.label} </label>
+      <label htmlFor={props.label}><b>{props.label}:</b></label>
       <select className={classes.selectField} id={props.label} value={currentValue} onChange={handleOptionChange}>
           {props.options.map((el,i) =><option value={i} key={el.id}>{el.value}</option>)}
       </select>

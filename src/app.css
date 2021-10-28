@@ -11,13 +11,6 @@
   display: flex;
 }
 
-.control {
-  background: rgb(250, 217, 223);
-  padding: 20px;
-  display: flex;
-  justify-content: flex-end;
-}
-
 .chart {
   background: rgb(213, 255, 246);
   flex-grow: 1;

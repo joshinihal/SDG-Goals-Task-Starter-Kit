@@ -7,6 +7,7 @@ const filterSlice = createSlice({
   initialState: initialfilterState,
   reducers: {
     addGoal: (state, action) => {
+      console.log('goal changed', action)
       state.goal = action.payload;
     },
 

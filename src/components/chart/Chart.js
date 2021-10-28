@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import * as d3 from "d3";
 
@@ -13,11 +14,16 @@ const Chart = (props) => {
 
   // const goal = useSelector((state) => state.data);
 
-  // const temperatureData = useData();
+  // const sdgData = useData();
 
-  const temperatureData = useSelector((state) => state.data);
+  const sdgData = useSelector((state) =>{ 
+    console.log('changed...')
+    return state.data});
 
-  console.log('temop', temperatureData)
+  useEffect(() => {
+    console.log('temop', sdgData)
+  }, [sdgData])
+
 
   const width = 3000;
   const height = 500;
@@ -27,17 +33,18 @@ const Chart = (props) => {
 
   const xValue = (el) => el.name;
   const yValue = (el) => el.value;
+  const keyValue = (el) => el.id;
 
   const yScale = d3.scaleLinear().domain([0, 100]).range([0, innerHeight]);
   const xScale = d3
     .scaleBand()
-    .domain(temperatureData.map(xValue))
+    .domain(sdgData.map(xValue))
     .range([0, innerWidth])
     .padding(0.3)
 
   const xScaleLabels = d3
     .scaleBand()
-    .domain(temperatureData.map(xValue))
+    .domain(sdgData.map(xValue))
     .range([0, innerWidth])
     .padding(0.3)
 
@@ -52,11 +59,12 @@ const Chart = (props) => {
         {/* <text className={classes.axisLabel} x={innerWidth/2} y={innerHeight + 35} textAnchor="middle">SDGs</text> */}
         <Bars
           innerHeight={innerHeight}
-          temperatureData={temperatureData}
+          sdgData={sdgData}
           xScale={xScale}
           yScale={yScale}
           xValue={xValue}
           yValue={yValue}
+          keyValue={keyValue}
         />
       </g>
     </svg>

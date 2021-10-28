@@ -1,5 +1,4 @@
 export const GOALS_LIST = [
-  { id: 0, value: "SDG Index Score" },
   { id: 1, value: "Goal 1: No Poverty" },
   { id: 2, value: "Goal 2: Zero Hunger" },
   { id: 3, value: "Goal 3: Good Health" },
@@ -23,6 +22,7 @@ export const GOALS_LIST = [
   },
   { id: 15, value: "Goal 15: Life on Land" },
   { id: 16, value: "Goal 16: Peace, Justice and Strong Institutions" },
+  { id: 17, value: "SDG Index Score" },
 ];
 
 export const YEARS = [
