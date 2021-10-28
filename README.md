@@ -1,10 +1,18 @@
-# Getting Started with Create React App
+# An app which visualizes Sustainable Development Goals stats of Indian States
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Getting Started with this project
+
+This project uses Create React App, Redux Toolkit, React Redux and D3.
 
 ## Available Scripts
 
 In the project directory, you can run:
+
+### `npm install`
+Run this first to install all the dependencies from package.json
+
+## Data
+The data for visualization is stored in src/data
 
 ### `npm start`
 
