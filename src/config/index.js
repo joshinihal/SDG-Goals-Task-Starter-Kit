@@ -30,3 +30,10 @@ export const YEARS = [
   { id: 2019, value: 2019 },
   { id: 2018, value: 2018 },
 ];
+
+export const TYPES = [
+  {id: 1, value: 'States'},
+  {id: 2, value: 'Union Territories'}
+];
+
+export const UTS = [ "IND035", "IND004", "IND034", "IND031", "IND007", "IND001", "IND037" ];

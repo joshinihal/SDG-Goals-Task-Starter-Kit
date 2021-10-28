@@ -1,31 +1,17 @@
-import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import * as d3 from "d3";
 
 import classes from './Chart.module.css';
-import useData from "../../hooks/useData";
 import AxisBottom from "./AxisBottom";
 import AxisLeft from "./AxisLeft";
 import Bars from "./Bars";
+import { UTS } from "../../config";
 
 const Chart = (props) => {
 
-  // const goal = useSelector((state) => state.filters.goal);
+  const sdgData = useSelector((state) => state.data.goals);
 
-  // const goal = useSelector((state) => state.data);
-
-  // const sdgData = useData();
-
-  const sdgData = useSelector((state) =>{ 
-    console.log('changed...')
-    return state.data});
-
-  useEffect(() => {
-    console.log('temop', sdgData)
-  }, [sdgData])
-
-
-  const width = 3000;
+  const width = sdgData.length > UTS.length  ? 3000 : 750;
   const height = 500;
   const margin = { top: 40, right: 40, bottom: 40, left: 40 };
   const innerWidth = width - margin.left - margin.right;
